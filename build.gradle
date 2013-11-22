@@ -1,0 +1,34 @@
+apply plugin:'war'
+
+def slf4j_version='1.7.5'
+def spring_version='3.2.3.RELEASE'
+def servlet_version='3.1.0'
+
+
+repositories {
+	mavenCentral()
+}
+
+configurations {
+    all*.exclude module: 'commons-logging'
+    all*.exclude module: 'spring-asm'
+    all*.exclude module: 'servlet-api'
+}
+
+dependencies{
+    compile "org.slf4j:slf4j-api:${slf4j_version}"
+    compile "org.slf4j:slf4j-nop:${slf4j_version}"
+    compile "org.slf4j:jcl-over-slf4j:${slf4j_version}"
+    compile 'cglib:cglib:2.2.2'
+	compile 'org.springframework.data:spring-data-mongodb:1.2.1.RELEASE'
+    compile "org.springframework:spring-beans:${spring_version}"
+    compile "org.springframework:spring-context:${spring_version}"
+    compile "org.springframework:spring-core:${spring_version}"
+    compile "org.springframework:spring-web:${spring_version}"
+    compile "org.springframework:spring-test:${spring_version}"
+    compile "org.springframework:spring-webmvc:${spring_version}"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.2.2"
+    providedCompile "javax.servlet:javax.servlet-api:${servlet_version}"
+	testCompile "junit:junit:4.11"
+}
+
